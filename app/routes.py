@@ -30,9 +30,10 @@ def contact():
 
 	return render_template('contact.html', title='Contact')
 
-@app.route('/<plnt>')
+@app.route('/<plnt>', methods=["POST", "GET"])
 def planet(plnt):
 
 	""" This will be the page with all the planet data displayed """
+	
 
 	return render_template('planet.html', title=plnt, plnt=plnt, all_planets=all_planets)
