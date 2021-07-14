@@ -23,17 +23,18 @@ def index():
 	else:
 		return render_template('index.html', title='Home')
 
+
+@app.route('/<plnt>', methods=["POST", "GET"])
+def planet(plnt):
+
+	""" This will be the page with all the planet data displayed """
+
+	return render_template('planet.html', title=plnt, plnt=plnt, all_planets=all_planets)
+
+
 @app.route('/contact')
 def contact():
 
 	"""This will be contact information"""
 
 	return render_template('contact.html', title='Contact')
-
-@app.route('/<plnt>', methods=["POST", "GET"])
-def planet(plnt):
-
-	""" This will be the page with all the planet data displayed """
-	
-
-	return render_template('planet.html', title=plnt, plnt=plnt, all_planets=all_planets)
