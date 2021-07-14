@@ -28,7 +28,9 @@
 				<div class="card bg-light">
 						<div class="card-body">
               <p></p>
-               <h4> This is where Time will go</h4>
+              	<h4> Time </h4>
+              	<label for="customRange1" class="form-label">Example range</label>
+								<input type="range" class="form-range" id="customRange1">
     				</div>
   			</div>
 		</div>
@@ -65,15 +67,33 @@
       					</tr>
      					 	<tr>
       						<td><b> Phase angle: </b></td>
-     					   	<td> Drop down </td>
+     					   	<td> <select class="navbar navbar-dark bg-white">
+                 					<option value="Planet" selected> {{ plnt }}</option>
+                  				{% for i in all_planets.keys() if plnt not in i %}
+                  				<option value={{i}}>{{i}}</option>
+                  				{% endfor %}
+						 						</select>
+						 			</td>
     				  	</tr>
     				  	<tr>
     				  		<td><b> Grating: </b></td>
-      				  	<td> Drop down </td>
+      				  	<td> <select class="navbar navbar-dark bg-white">
+                 					<option value="Planet" selected> {{ plnt }}</option>
+                  				{% for i in all_planets.keys() if plnt not in i %}
+                  				<option value={{i}}>{{i}}</option>
+                  				{% endfor %}
+						 						</select>
+						 			</td>
      						</tr>
      					 	<tr>
       						<td><b> Wavelength Coverage: </b></td>
-        					<td> Drop down </td>
+        					<td> <select class="navbar navbar-dark bg-white">
+                 					<option value="Planet" selected> {{ plnt }}</option>
+                  				{% for i in all_planets.keys() if plnt not in i %}
+                  				<option value={{i}}>{{i}}</option>
+                  				{% endfor %}
+						 						</select>
+						 			</td>
       					</tr>
     						</tbody>
  						 </table>
