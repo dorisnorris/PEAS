@@ -1,5 +1,7 @@
 from flask import render_template, url_for, redirect, request
 from app import app
+import numpy as np
+from .plots import test_plot
 
 all_planets = {
 				'Mercury' : 1,
@@ -29,8 +31,9 @@ def planet(plnt):
 
 	""" This will be the page with all the planet data displayed """
 
-	return render_template('planet.html', title=plnt, plnt=plnt, all_planets=all_planets)
+	flux_plot = test_plot()
 
+	return render_template('planet.html', flux_plot=flux_plot, plnt=plnt, all_planets=all_planets)
 
 @app.route('/contact')
 def contact():
