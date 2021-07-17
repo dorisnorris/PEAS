@@ -1,10 +1,11 @@
 $('#SelectPlanet').on('change',function(){
+
     $.ajax({
-        url: "/<plnt>", 
+        url: "/planet", 
         type: "GET",
         contentType: 'application/json;charset=UTF-8',
         data: {
-            'planet': document.getElementById('SelectPlanet').value,
+            'selected_planet': document.getElementById('SelectPlanet').value,
         },
         dataType:"json",
         success: function (data) {

@@ -1,5 +1,6 @@
-from flask import render_template, url_for, redirect, request
 from app import app
+from flask import render_template, url_for, redirect, request
+from flask import jsonify
 import numpy as np
 from .plots import test_plot
 
@@ -31,9 +32,22 @@ def planet(plnt):
 
 	""" This will be the page with all the planet data displayed """
 
-	flux_plot = test_plot()
+	flux_plot = test_plot(plnt)
 
 	return render_template('planet.html', flux_plot=flux_plot, plnt=plnt, all_planets=all_planets)
+
+@app.route('/planet', methods=['POST', 'GET'])
+def change_features_flux_plot():
+
+    """Changes features for the flux/wavelength plot """
+
+    #selected is only defined in the javascript
+    selected_planet = request.args['selected_planet']
+
+    graphJSON= test_plot(selected_planet)
+
+    return graphJSON
+
 
 @app.route('/contact')
 def contact():

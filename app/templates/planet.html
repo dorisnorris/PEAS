@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+<body>
 {% block content %}
 
 	<!-- PLOTLY-->
@@ -22,7 +23,7 @@
 			<div class="card bg-light">
 				<div class="card-body">
 					<form class="form-inline" action="" method="POST" novalidate="">
-						<p><input type="text" placeholder=" {{ plnt }} " name="keyword" /></p>
+						<p><input type="text" name="keyword" /></p>
 						<p><input type="submit" value="submit" /></p>
 					</form>
 				</div>
@@ -57,13 +58,15 @@
 							<table class="table table-bordered">
     						<tbody>
       					<tr>
-        					<td><b>Planet:</b></td>
-        					<td> <select class="navbar navbar-dark bg-white" id="SelectPlanet">
-                 					<option value="Planet" selected> {{ plnt }}</option>
-                  				{% for i in all_planets.keys() if plnt not in i %}
-                  				<option value={{i}}>{{i}}</option>
-                  				{% endfor %}
-						 						</select>
+      						<form class="form-inline">
+        						<td><b>Planet:</b></td>
+        						<td> <select class="navbar navbar-dark bg-white" id="SelectPlanet">
+                 						<option value="plnt" selected> {{ plnt }}</option>
+                  					{% for i in all_planets.keys() if plnt not in i %}
+                  					<option value={{i}}>{{i}}</option>
+                  					{% endfor %}
+						 							</select>
+						 			</form>
         					</td>
       					</tr>
       					<tr>
@@ -77,30 +80,21 @@
      					 	<tr>
       						<td><b> Phase angle: </b></td>
      					   	<td> <select class="navbar navbar-dark bg-white">
-                 					<option value="Planet" selected> {{ plnt }}</option>
-                  				{% for i in all_planets.keys() if plnt not in i %}
-                  				<option value={{i}}>{{i}}</option>
-                  				{% endfor %}
+                 					
 						 						</select>
 						 			</td>
     				  	</tr>
     				  	<tr>
     				  		<td><b> Grating: </b></td>
       				  	<td> <select class="navbar navbar-dark bg-white">
-                 					<option value="Planet" selected> {{ plnt }}</option>
-                  				{% for i in all_planets.keys() if plnt not in i %}
-                  				<option value={{i}}>{{i}}</option>
-                  				{% endfor %}
+                 					
 						 						</select>
 						 			</td>
      						</tr>
      					 	<tr>
       						<td><b> Wavelength Coverage: </b></td>
         					<td> <select class="navbar navbar-dark bg-white">
-                 					<option value="Planet" selected> {{ plnt }}</option>
-                  				{% for i in all_planets.keys() if plnt not in i %}
-                  				<option value={{i}}>{{i}}</option>
-                  				{% endfor %}
+                 					
 						 						</select>
 						 			</td>
       					</tr>
@@ -129,10 +123,11 @@
 		</div>
 	</div>
 	
-
-
 	<!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+	<script type=text/javascript src="{{url_for('static', filename='jquery.js') }}"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 
+	<!-- PLOTLY STUFF -->
+	<script src="{{ url_for('static', filename='js/plots.js') }}"></script>
 
 {% endblock %}
