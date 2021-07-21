@@ -1,5 +1,6 @@
 from app import app
-from flask import render_template, url_for, redirect, request
+app.config['SECRET_KEY'] = 'you-will-never-guess'
+from flask import render_template, url_for, redirect, request, flash
 from flask import jsonify
 import numpy as np
 from .plots import test_plot
@@ -22,7 +23,11 @@ def index():
 
 	if request.method == "POST":
 		key = request.form['keyword']
-		return redirect(url_for('planet', plnt=key))
+		if key in all_planets:
+			return redirect(url_for('planet', plnt=key))
+		else:
+			flash('This field is required')
+			return redirect(url_for('index'))
 	else:
 		return render_template('index.html', title='Home')
 
