@@ -24,15 +24,13 @@
                     <div class="card-body">
                     <form class="form-inline" action="" method="POST" novalidate="">
                         <p><input type="text" name="keyword" /></p>
-                            {% with messages = get_flashed_messages() %}
+                            <p>{% with messages = get_flashed_messages() %}
                             {% if messages %}
-                            <ul>
                                 {% for message in messages %}
                                 <span style="color: red;">[{{ message }}]</span>
                                 {% endfor %}
-                            </ul>
                             {% endif %}
-                            {% endwith %}
+                            {% endwith %}</p>
                         <p><input type="submit" value="submit" /></p>
                     </form>
                     <p class="card-text">Explore PEAS data</p>
