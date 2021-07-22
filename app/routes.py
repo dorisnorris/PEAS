@@ -23,10 +23,11 @@ def index():
 
 	if request.method == "POST":
 		key = request.form['keyword']
+		key = key.title()
 		if key in all_planets:
 			return redirect(url_for('planet', plnt=key))
 		else:
-			flash('This field is required')
+			flash('Please enter a planet')
 			return redirect(url_for('index'))
 	else:
 		return render_template('index.html', title='Home')
