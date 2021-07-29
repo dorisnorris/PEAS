@@ -32,7 +32,6 @@ def index():
 	else:
 		return render_template('index.html', title='Home')
 
-
 @app.route('/<plnt>', methods=["POST", "GET"])
 def planet(plnt):
 
@@ -53,7 +52,6 @@ def change_features_flux_plot():
     graphJSON= test_plot(selected_planet)
 
     return graphJSON
-
 
 @app.route('/contact')
 def contact():
