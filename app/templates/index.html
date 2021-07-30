@@ -22,15 +22,15 @@
              <div class="d-flex mt-5 justify-content-center">
                 <div class="card text-center bg-light" style="width: 18rem;">
                     <div class="card-body">
-                    <form class="form-inline" action="" method="POST" novalidate="">
+                    <form class="form" action="" method="POST" novalidate="">
                         <p><input type="text" name="keyword" /></p>
                             <p>{% with messages = get_flashed_messages() %}
-                            {% if messages %}
+                                {% if messages %}
                                 {% for message in messages %}
                                 <span style="color: red;">[{{ message }}]</span>
                                 {% endfor %}
-                            {% endif %}
-                            {% endwith %}</p>
+                                {% endif %}
+                                {% endwith %}</p>
                         <p><input type="submit" value="submit" /></p>
                     </form>
                     <p class="card-text">Explore PEAS data</p>
