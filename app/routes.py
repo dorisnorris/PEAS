@@ -48,6 +48,7 @@ def change_features_flux_plot():
 
     #selected is only defined in the javascript
     selected_planet = request.args['selected_planet']
+    print(selected_planet)
 
     graphJSON= test_plot(selected_planet)
 
