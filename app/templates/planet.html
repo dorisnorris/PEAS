@@ -60,8 +60,8 @@
       					<tr>
       						<form class="form-inline">
         						<td><b>Planet:</b></td>
-        						<td> <select class="selectpicker" multiple data-max-options="5"
-        							 id="SelectPlanet" data-size="5">
+        						<td> <select class="selectpicker" multiple data-max-options="3"
+        							 id="SelectPlanet" data-size="8">
                  						<option selected> {{ plnt }}</option>
                   						{% for i in all_planets.keys() if plnt not in i %}
                   						<option value={{i}}>{{i}}</option>
