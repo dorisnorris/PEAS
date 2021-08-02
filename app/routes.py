@@ -25,6 +25,7 @@ def index():
 		key = request.form['keyword']
 		key = key.title()
 		if key in all_planets:
+			print(key)
 			return redirect(url_for('planet', plnt=key))
 		else:
 			flash('Please enter a planet')
