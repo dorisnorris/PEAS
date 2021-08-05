@@ -5,13 +5,13 @@ class Main(db.Model):
 	UT_date = db.Column(db.Integer, nullable=False)
 	time_of_obs = db.Column(db.Integer)
 	object_name = db.Column(db.String(30))
-	integration_time = db.Column(db.Integer)
-	grating = db.Column(db.Float)
+	integration_time = db.Column(db.Float)
+	grating = db.Column(db.Integer)
 	central_wavelength = db.Column(db.Float)
-	slit_width = db.Column(db.Float)
+	slit_width = db.Column(db.Integer)
 	phase_angle = db.Column(db.Float)
 	comments = db.Column(db.String(200))
-	spectra = db.relationship('Spectrum', backref='object', lazy=True)
+	spectra = db.relationship('Spectrum', backref='object', lazy=True) # one to many relationship
 
 	def __repr__(self):
 		return '<Item {}, {}>'.format(self.id, self.object_name) # this needs to be changed at some point
