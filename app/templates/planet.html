@@ -109,16 +109,16 @@
   			<!-- Wavelength plot -->
 
 				<div class="col-8">
-						<div class="card bg-light">
-							<div class="card-body">
+					<div class="card bg-light">
+					<div class="card-body">
                 	<div class="chart-area" id="flux_plot">
                     <script>
                         var config = {responsive: true}
                         var graphs = {{ flux_plot | safe }};
                         Plotly.plot('flux_plot',graphs['data'],graphs['layout'],config);
                     </script>
-									</div> 
-    					</div>
+					</div> 
+    				</div>
   					</div>
 				</div>
 
