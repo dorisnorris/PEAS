@@ -24,8 +24,8 @@ def test_plot(selected_planet):
 		print(title)
 
 	fig.update_layout(
-                 xaxis_title="X axis",
-                 yaxis_title="Y axis",
+                 xaxis_title="Wavelength",
+                 yaxis_title="Flux",
                  title= title)
 
 	graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
