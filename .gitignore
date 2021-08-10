@@ -1,0 +1,9 @@
+*.pyc
+*.html~
+*.p
+*.json~
+
+# Mac files
+*.DS_Store
+
+*__pycache__/
