@@ -6,6 +6,8 @@ import numpy as np
 import json
 
 def test_plot(selected_planet):
+	if isinstance(selected_planet, str):
+		selected_planet = [selected_planet]
 
 	x = np.arange(10)
 	fig = go.Figure(data=go.Scatter(x=x, y=x**2))
