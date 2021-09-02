@@ -4,8 +4,7 @@ from flask import render_template, url_for, redirect, request, flash
 from flask import jsonify
 import numpy as np
 from .plots import test_plot
-from app import db
-from .models import Main, Spectrum
+
 
 all_planets = {
 				'Mercury' : 1,
