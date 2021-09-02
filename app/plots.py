@@ -1,3 +1,4 @@
+import os
 import plotly
 import plotly.graph_objs as go
 import plotly.express as px
@@ -6,11 +7,10 @@ import numpy as np
 import json
 
 def test_plot(selected_planet):
+	directory = '/Users/Doris/Documents/codes/peas/PEAS/app/data/Albedos'
+
 	if isinstance(selected_planet, str):
 		selected_planet = [selected_planet]
-
-	x = np.arange(10)
-	fig = go.Figure(data=go.Scatter(x=x, y=x**2))
 
 	if len(selected_planet) == 0:
 		title= "None Selected"
@@ -25,10 +25,21 @@ def test_plot(selected_planet):
 		title=  selected_planet[0] + ', ' + selected_planet[1] + ', and ' + selected_planet[2]
 		print(title)
 
-	fig.update_layout(
-                 xaxis_title="Wavelength",
-                 yaxis_title="Flux",
-                 title= title)
+	fig = go.Figure()
+
+	for i in selected_planet:
+		read_in = pd.read_csv(os.path.join(directory, f'{i}.txt'), header=None, names=['w', 'f'], delim_whitespace=True)
+
+		fig.add_trace(go.Scatter(
+							x = read_in['w'],
+							y = read_in['f'],
+							mode = 'lines',
+							name = i))
+
+		fig.update_layout(
+                 	xaxis_title="Wavelength",
+                 	yaxis_title="Flux",
+                 	title= title)
 
 	graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
 
