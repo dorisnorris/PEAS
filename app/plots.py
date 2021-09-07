@@ -6,8 +6,8 @@ import pandas as pd
 import numpy as np
 import json
 
-def test_plot(selected_planet):
-	directory = '/Users/Doris/Documents/codes/peas/PEAS/app/data/Albedos'
+def test_plot(selected_planet, peas_db):
+	# directory = '/Users/Doris/Documents/codes/peas/PEAS/app/data/Albedos'
 
 	if isinstance(selected_planet, str):
 		selected_planet = [selected_planet]
@@ -28,18 +28,24 @@ def test_plot(selected_planet):
 	fig = go.Figure()
 
 	for i in selected_planet:
-		read_in = pd.read_csv(os.path.join(directory, f'{i}.txt'), header=None, names=['w', 'f'], delim_whitespace=True)
+		# read_in = pd.read_csv(os.path.join(directory, f'{i}.txt'), header=None, names=['w', 'f'], delim_whitespace=True)
+		data = peas_db.get_data(i)
+		# print(data)
 
-		fig.add_trace(go.Scatter(
-							x = read_in['w'],
-							y = read_in['f'],
-							mode = 'lines',
-							name = i))
+		for row in data:
+			x, y = row
+			# print('wavelength:', x, 'flux:', y)
 
-		fig.update_layout(
-                 	xaxis_title="Wavelength",
-                 	yaxis_title="Flux",
-                 	title= title)
+			fig.add_trace(go.Scatter(
+						x = x/np.max(x),
+						y = y/np.max(y),
+						mode = 'lines',
+						name = i))
+
+			fig.update_layout(
+	            	xaxis_title="Wavelength",
+	          		yaxis_title="Flux",
+	           		title= title)
 
 	graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
 
