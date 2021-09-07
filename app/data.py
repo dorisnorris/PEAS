@@ -25,18 +25,55 @@ class PEAS_db():
 			print(e)
 
 	def get_data(self, planet, time='all', phase_angle='all'):
-		'''
-		Currently, this will query all data from meta table and spectra table
-		'''
+	
 		cur, conn = self.open_connection()
 
-		command = (""" SELECT * from meta, spectra; """)
+		command = (""" SELECT wave, spectrum
+					from spectra, meta
+					WHERE spectra.id = meta.id and meta.object_name = '{}'; """.format(planet))
 	
 		cur.execute(command)
 		data = cur.fetchall()
 		
-		conn.close() 
-		return data	
+		conn.close()
+		return data
+
+	def get_meta_count(self):
+
+		cur, conn = self.open_connection()
+
+		command = (""" SELECT COUNT(*) FROM meta;""")
+
+		cur.execute(command)
+		meta_count = cur.fetchall()
+
+		conn.close()
+		return meta_count
+
+	def get_meta_items(self):
+
+		cur, conn = self.open_connection()
+
+		command = (""" SELECT * FROM meta;""")
+
+		cur.execute(command)
+		meta_items = cur.fetchall()
+
+		conn.close()
+		return meta_items
+
+	def get_spectra_count(self):
+
+		cur, conn = self.open_connection()
+
+		command = (""" SELECT COUNT(*) FROM spectra;""")
+
+		cur.execute(command)
+		spectra_count = cur.fetchall()
+
+		conn.close()
+		return spectra_count
+
 
 # these functions below are so that you can store your float arrays as bytes to minimize storage
 
