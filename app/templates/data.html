@@ -2,85 +2,52 @@
 
 {% block content %}
 
-
-	<div class="container">
-            <div class="text-center mt-5">
-                <h1>PEAS Data</h1>
-                <div>
-                    <table id="test_table" class="display" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th>Object Name</th>
-                                <th>UT_Date</th>
-                                <th>Observation Time</th>
-                                <th>Flux Data ID</th>
-                            </tr>
-                        </thead>
-                        <body>
-                            <tr>
-                                <td> Mercury </td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td> Venus </td>
-                                <td>{{ meta_items[2][1]}}</td>
-                                <td>{{ meta_items[2][2]}}</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td> Earth </td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td> Mars </td>
-                                 <td>{{ meta_items[0][1]}}</td>
-                                 <td>{{ meta_items[0][2]}}</td>
-                                 <td></td>
-                            </tr>
-                            <tr>
-                                <td> Jupiter </td>
-                                 <td>{{ meta_items[1][1]}}</td>
-                                 <td>{{ meta_items[1][2]}}</td>
-                                 <td></td>
-                            </tr>
-                            <tr>
-                                <td> Saturn </td>
-                                 <td>{{ meta_items[3][1]}}</td>
-                                 <td>{{ meta_items[3][2]}}</td>
-                                 <td></td>
-                            </tr>
-                            <tr>
-                                <td> Uranus </td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td> Neptune </td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </body>
-                        <tfoot>
-                            <tr>
-                                <th>Object Name</th>
-                                <th>UT_Date</th>
-                                <th>Observation Time</th>
-                                <th>Flux Data ID</th>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </div>
-
-                </p>
-                <p>Bootstrap v5.0.2</p>
-            </div>
+    <div class="container">
+        <div class="text-center mt-5">
+            <h1> PEAS Data</h1>
         </div>
+    </div>
+
+	<div class="container-fuild" style="margin:5%">
+        <table id="test_table" class="display">
+            <thead>
+                <tr>
+                    {% for i in meta.keys() %}
+                       <th>{{i}}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody id='table_Body' class="display table table-striped table-bordered" style="width:105%">
+                {% for i in range(0, table_len) %}
+                <tr>
+                    <td>{{meta['_id'][i]}}</td>
+                    <td>{{meta['UT_date'][i]}}</td>
+                    <td>{{meta['time_of_obs'][i]}}</td>
+                    <td>{{meta['object_name'][i]}}</td>
+                    <td>{{meta['integration_time'][i]}}</td>
+                    <td>{{meta['grating'][i]}}</td>
+                    <td>{{meta['central_wavelength'][i]}}</td>
+                    <td>{{meta['slit_width'][i]}}</td>
+                    <td>{{meta['phase_angle'][i]}}</td>
+                    <td>{{meta['comments'][i]}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    {% for i in meta.keys() %}
+                        <th>{{i}}</th>
+                    {% endfor %}
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+<div class="container">
+    <div class="text-center mt-5">
+        <p>Bootstrap v5.0.2</p>
+    </div>
+</div>
 
 <!-- CUSTOM JS STUFF -->
 <script src="{{ url_for('static', filename='js/custom.js') }}"></script>
