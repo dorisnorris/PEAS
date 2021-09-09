@@ -4,10 +4,10 @@ import sqlite3
 import numpy as np
 import pandas as pd
 
-# this class will create the sqlite3 db
+# this class will query the sqlite3 db
 
 class PEAS_db():
-	#create database using sqlite3
+	
 	def __init__(self, filepath):
 		self.db_f = os.path.join(filepath)
 
@@ -24,7 +24,7 @@ class PEAS_db():
 		except Exception as e:
 			print(e)
 
-	def get_data(self, planet, time='all', phase_angle='all'):
+	def get_data(self, planet, time='all', phase_angle='all'): # this function queries the data needed for the plot on planet.html
 	
 		cur, conn = self.open_connection()
 
@@ -54,7 +54,8 @@ class PEAS_db():
 
 		cur, conn = self.open_connection()
 
-		command = (""" SELECT * FROM meta;""")
+		command = (""" SELECT *
+					FROM meta;""")
 
 		cur.execute(command)
 		meta_items = cur.fetchall()
@@ -73,6 +74,33 @@ class PEAS_db():
 
 		conn.close()
 		return spectra_count
+
+	def meta_dict(self, meta_items):
+
+		table = {'_id':[],
+			'UT_date':[],
+			'time_of_obs':[],
+			'object_name':[],
+			'integration_time':[],
+			'grating':[],
+			'central_wavelength':[],
+			'slit_width':[],
+			'phase_angle':[],
+			'comments':[]}
+
+		for i in meta_items:
+			table['_id'] += [i[0]]
+			table['UT_date'] += [i[1]]
+			table['time_of_obs'] += [i[2]]
+			table['object_name'] += [i[3]]
+			table['integration_time'] += [i[4]]
+			table['grating'] += [i[5]]
+			table['central_wavelength'] += [i[6]]
+			table['slit_width'] += [i[7]]
+			table['phase_angle'] += [i[8]]
+			table['comments'] += [i[9]]
+		
+		return table
 
 
 # these functions below are so that you can store your float arrays as bytes to minimize storage

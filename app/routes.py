@@ -64,6 +64,8 @@ def data():
 	"""This will be data information"""
 	meta_count = peas_db.get_meta_count()
 	meta_items = peas_db.get_meta_items()
+	table = peas_db.meta_dict(meta_items)
+	print(table)
 
 	spectra_count = peas_db.get_spectra_count()
 
@@ -71,4 +73,4 @@ def data():
 	# print(type(meta_count))
 	# print(type(meta_items))
 
-	return render_template('data.html', title='data', all_planets=all_planets, meta_count=meta_count, meta_items=meta_items, spectra_count=spectra_count)
+	return render_template('data.html', title='data', all_planets=all_planets, meta_count=meta_count, meta_items=meta_items, spectra_count=spectra_count, data=data, meta=table, table_len=len(table))
