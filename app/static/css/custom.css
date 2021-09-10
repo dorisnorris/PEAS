@@ -35,3 +35,8 @@ tbody tr {
     word-wrap:break-word;
 }
 
+tfoot input {
+    width: 120px;
+    padding: 3px;
+    box-sizing: border-box;
+}

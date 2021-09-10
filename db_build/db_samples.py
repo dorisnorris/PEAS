@@ -1,6 +1,6 @@
 # this file serves as a database study
 # we built and compared two databases so far 
-# based on efficiency we will move forward with standalone sqlite
+# based on efficiency we will move forward with standalone sqlite3
 
 import io
 import os
