@@ -24,8 +24,9 @@ class PEAS_db():
 		except Exception as e:
 			print(e)
 
-	def get_data(self, planet, time='all', phase_angle='all'): # this function queries the data needed for the plot on planet.html
-	
+	def get_data(self, planet, time='all', phase_angle='all'):
+		# this function queries the data needed for the plot on planet.html
+
 		cur, conn = self.open_connection()
 
 		command = (""" SELECT wave, spectrum
@@ -39,6 +40,7 @@ class PEAS_db():
 		return data
 
 	def get_meta_count(self):
+		# this function queries the item count of the meta table
 
 		cur, conn = self.open_connection()
 
@@ -51,6 +53,7 @@ class PEAS_db():
 		return meta_count
 
 	def get_meta_items(self):
+		# this function queries all the data in the meta table
 
 		cur, conn = self.open_connection()
 
@@ -64,6 +67,7 @@ class PEAS_db():
 		return meta_items
 
 	def get_spectra_count(self):
+		# this function queries the item count of the spectra table
 
 		cur, conn = self.open_connection()
 
@@ -76,29 +80,30 @@ class PEAS_db():
 		return spectra_count
 
 	def meta_dict(self, meta_items):
+		# this function turns the items queried from the meta table and creates a dictionary that will populate the datatable
 
-		table = {'_id':[],
-			'UT_date':[],
-			'time_of_obs':[],
-			'object_name':[],
-			'integration_time':[],
-			'grating':[],
-			'central_wavelength':[],
-			'slit_width':[],
-			'phase_angle':[],
-			'comments':[]}
+		table = {'ID':[],
+			'UT_Date':[],
+			'Time_of_Obs':[],
+			'Object_Name':[],
+			'Int_Time':[],
+			'Grating':[],
+			'Central_Wave':[],
+			'Slit_Width':[],
+			'Phase_Angle':[],
+			'Comments':[]}
 
 		for i in meta_items:
-			table['_id'] += [i[0]]
-			table['UT_date'] += [i[1]]
-			table['time_of_obs'] += [i[2]]
-			table['object_name'] += [i[3]]
-			table['integration_time'] += [i[4]]
-			table['grating'] += [i[5]]
-			table['central_wavelength'] += [i[6]]
-			table['slit_width'] += [i[7]]
-			table['phase_angle'] += [i[8]]
-			table['comments'] += [i[9]]
+			table['ID'] += [i[0]]
+			table['UT_Date'] += [i[1]]
+			table['Time_of_Obs'] += [i[2]]
+			table['Object_Name'] += [i[3]]
+			table['Int_Time'] += [i[4]]
+			table['Grating'] += [i[5]]
+			table['Central_Wave'] += [i[6]]
+			table['Slit_Width'] += [i[7]]
+			table['Phase_Angle'] += [i[8]]
+			table['Comments'] += [i[9]]
 		
 		return table
 

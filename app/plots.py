@@ -10,7 +10,7 @@ def test_plot(selected_planet, peas_db):
 	# directory = '/Users/Doris/Documents/codes/peas/PEAS/app/data/Albedos'
 
 	if isinstance(selected_planet, str):
-		selected_planet = [selected_planet]
+		selected_planet = [selected_planet] # this turns selected planet into a list for the plot title
 
 	if len(selected_planet) == 0:
 		title= "None Selected"
@@ -29,7 +29,7 @@ def test_plot(selected_planet, peas_db):
 
 	for i in selected_planet:
 		# read_in = pd.read_csv(os.path.join(directory, f'{i}.txt'), header=None, names=['w', 'f'], delim_whitespace=True)
-		data = peas_db.get_data(i)
+		data = peas_db.get_data(i) # this function gets the wave and spectra from the spectra table in the db
 		# print(data)
 
 		for row in data:

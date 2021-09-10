@@ -8,8 +8,11 @@
         </div>
     </div>
 
+    <!-- Datatable starts here-->
 	<div class="container-fuild" style="margin:5%">
-        <table id="test_table" class="display">
+        <div class="row"><!-- Row 2 -->
+            <div class="col-lg-12" style="padding-left:0px"><!-- 12 column  -->
+            <table id="test_table" class="display" style="width:105%">
             <thead>
                 <tr>
                     {% for i in meta.keys() %}
@@ -17,19 +20,19 @@
                     {% endfor %}
                 </tr>
             </thead>
-            <tbody id='table_Body' class="display table table-striped table-bordered" style="width:105%">
+            <tbody id='table_Body'>
                 {% for i in range(0, table_len) %}
                 <tr>
-                    <td>{{meta['_id'][i]}}</td>
-                    <td>{{meta['UT_date'][i]}}</td>
-                    <td>{{meta['time_of_obs'][i]}}</td>
-                    <td>{{meta['object_name'][i]}}</td>
-                    <td>{{meta['integration_time'][i]}}</td>
-                    <td>{{meta['grating'][i]}}</td>
-                    <td>{{meta['central_wavelength'][i]}}</td>
-                    <td>{{meta['slit_width'][i]}}</td>
-                    <td>{{meta['phase_angle'][i]}}</td>
-                    <td>{{meta['comments'][i]}}</td>
+                    <td>{{meta['ID'][i]}}</td>
+                    <td>{{meta['UT_Date'][i]}}</td>
+                    <td>{{meta['Time_of_Obs'][i]}}</td>
+                    <td>{{meta['Object_Name'][i]}}</td>
+                    <td>{{meta['Int_Time'][i]}}</td>
+                    <td>{{meta['Grating'][i]}}</td>
+                    <td>{{meta['Central_Wave'][i]}}</td>
+                    <td>{{meta['Slit_Width'][i]}}</td>
+                    <td>{{meta['Phase_Angle'][i]}}</td>
+                    <td>{{meta['Comments'][i]}}</td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -41,7 +44,9 @@
                 </tr>
             </tfoot>
         </table>
-    </div>
+        </div><!-- 12 column ends -->
+        </div><!-- Row 2 ends -->
+    </div> <!-- Datatable ends here-->
 
 <div class="container">
     <div class="text-center mt-5">
@@ -49,7 +54,8 @@
     </div>
 </div>
 
-<!-- CUSTOM JS STUFF -->
+<!-- CUSTOM STUFF -->
 <script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+<script src="{{ url_for('static', filename='css/custom.css') }}"></script>
 
 {% endblock %}

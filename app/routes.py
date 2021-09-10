@@ -6,8 +6,10 @@ from flask import jsonify
 from .plots import test_plot
 from .data import PEAS_db as PEASdb
 
-peas_db = PEASdb('/Users/Doris/Documents/codes/peas/PEAS/app/data/PEAS.db')
+peas_db = PEASdb('/Users/Doris/Documents/codes/peas/PEAS/app/data/PEAS.db') # this probably needs to be edited
 
+# this is a dict that is used to verify the users input in the index is a planet
+# it is also used to populate the dropdown menu in the planet page
 all_planets = {
 				'Mercury' : 1,
 				'Venus' : 2,
@@ -26,12 +28,12 @@ def index():
 
 	if request.method == "POST":
 		key = request.form['keyword']
-		key = key.title()
+		key = key.title() # this takes the users input and capitalizes the first letter
 		if key in all_planets:
-			print(key)
+			print(key) # debugging
 			return redirect(url_for('planet', plnt=key))
 		else:
-			flash('Please enter a planet')
+			flash('Please enter a planet') # this is an error message that displays if user inputs nothing or not a planet
 			return redirect(url_for('index'))
 	else:
 		return render_template('index.html', title='Home')
@@ -61,15 +63,16 @@ def change_features_flux_plot():
 @app.route('/data')
 def data():
 
-	"""This will be data information"""
-	meta_count = peas_db.get_meta_count()
+	"""This will be data information that is queried from the db"""
+
+	meta_count = peas_db.get_meta_count() # testing queries
 	meta_items = peas_db.get_meta_items()
-	table = peas_db.meta_dict(meta_items)
-	print(table)
+	table = peas_db.meta_dict(meta_items) # this gets a table dict from data.py to populate the datatable
+	print(table) # debugging
 
-	spectra_count = peas_db.get_spectra_count()
+	spectra_count = peas_db.get_spectra_count() # testing queries
 
-	print("Total number of meta items is : {}".format(meta_count))
+	print("Total number of meta items is : {}".format(meta_count)) # debugging into terminal
 	# print(type(meta_count))
 	# print(type(meta_items))
 
