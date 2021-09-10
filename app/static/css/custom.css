@@ -25,3 +25,13 @@
     box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
     background-color: #e9e8e8; 
 }
+
+tbody tr {
+    font-size:0.9rem;
+}
+
+#test_table{
+    table-layout: fixed !important;
+    word-wrap:break-word;
+}
+

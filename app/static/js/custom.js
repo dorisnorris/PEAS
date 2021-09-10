@@ -10,7 +10,12 @@ $(document).ready(function() {
  
     // DataTable
     var table = $('#test_table').DataTable({
+        columnDefs: [
+            { width: "8px", targets: [0] } // attempting to resize the columns in the datatable; does not work at the moment
+        ],
+        fixedColumns: true,
         initComplete: function () {
+
             // Apply the search
             this.api().columns().every( function () {
                 var that = this;
@@ -25,5 +30,6 @@ $(document).ready(function() {
             } );
         }
     });
+
  
 } );
