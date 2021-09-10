@@ -1,3 +1,5 @@
+# this file is configuration for flask-sqlalchemy if needed in the future
+
 import os
 basedir = os.path.abspath(os.path.dirname(__file__))
 
