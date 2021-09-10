@@ -76,4 +76,4 @@ def data():
 	# print(type(meta_count))
 	# print(type(meta_items))
 
-	return render_template('data.html', title='data', all_planets=all_planets, meta_count=meta_count, meta_items=meta_items, spectra_count=spectra_count, data=data, meta=table, table_len=len(table))
+	return render_template('data.html', title='data', all_planets=all_planets, meta_count=meta_count, meta_items=meta_items, spectra_count=spectra_count, data=data, meta=table, table_len=len(table['ID']))
